@@ -56,7 +56,8 @@ public class project1 {
         if (root == 0) temp[3] = "One Real Root";
         if (root > 0) temp[3] = "Two Real Roots";
 
-        arrayList.add(temp);        // store data in array list for display
+        arrayList.add(temp);                    // store data in array list for display
+        // temp = new String[temp.length];      // purge array, not needed
 
     }
 
