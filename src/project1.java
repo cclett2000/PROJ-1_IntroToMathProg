@@ -24,8 +24,8 @@ public class project1 {
         // Enhanced for loop: for (int[] ints : number_storage) (introduced in Java 5)
         // ***Link: https://www.cis.upenn.edu/~matuszek/General/JavaSyntax/enhanced-for-loops.html***
         //      ^ simpler way, ':' equals 'in'; for value 'in' array
-        //              ^ String: for (String[] strings : array_name)
-        //              ^ int: for (int[] ints : array_name
+        //              ^ String: for (String[] arbitrary_name : array_name)
+        //              ^ int: for (int[] arbitrary_name : array_name
         //      ^ simple but inflexible: can be used for going through elements of an array
         //        first-to-last, and you don't need to know the index of the current element.
         //        Any other causes the standard for loop should be used.
@@ -75,7 +75,7 @@ public class project1 {
         // display Arraylist
         System.out.println("Key = [Formula(+), Formula(-), Root, Real Root Type]");
         for (String[] values : arrayList) {
-            System.out.println(Arrays.toString(values));
+            System.out.println("\t   > " + Arrays.toString(values));
         }
     }
 }
