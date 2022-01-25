@@ -9,34 +9,44 @@ import java.util.Arrays;
 
 public class project1 {
     public static void main(String[] args){
-        // settings
-        boolean enable_debug = true;
+        boolean enable_debug = false;                // if true: shows debug info
 
-        // arrays that hold quadratic formula and root type
-        ArrayList<String[]> data = new ArrayList<>();     // stores info
+        // arrayList that hold results and root type
+        ArrayList<String[]> data = new ArrayList<>();
 
         // number storage
-        int[][] number_storage = {{1, -3, 4},       // example 1
-                                  {-4, 12, -9},     // example 2
-                                  {2, -11, 5}};     // example 3
+        double[][] number_storage = {{1, -3, 4},       // example 1
+                                     {-4, 12, -9},     // example 2
+                                     {2, -11, 5}};     // example 3
 
-        // worker loop
-        for (int i = 0; i < number_storage.length; i++){
-            q_calc(data, number_storage[i][0], number_storage[i][1], number_storage[0][2], enable_debug);
+
+        // Original for loop: for (int i = 0; i < number_storage.length; i++)
+        // Enhanced for loop: for (int[] ints : number_storage) (introduced in Java 5)
+        // ***Link: https://www.cis.upenn.edu/~matuszek/General/JavaSyntax/enhanced-for-loops.html***
+        //      ^ simpler way, ':' equals 'in'; for value 'in' array
+        //              ^ String: for (String[] strings : array_name)
+        //              ^ int: for (int[] ints : array_name
+        //      ^ simple but inflexible: can be used for going through elements of an array
+        //        first-to-last, and you don't need to know the index of the current element.
+        //        Any other causes the standard for loop should be used.
+
+        // worker loop; inserts each number array and executes quadratic method
+        for (double[] values : number_storage) {
+            q_calc(data, values[0], values[1], values[2], enable_debug);
         }
 
         q_display(data);        // display to user
 
     }
 
-    static void q_calc(ArrayList<String[]> arrayList, int a, int b, int c, boolean enable_debug){
+    static void q_calc(ArrayList<String[]> arrayList, double a, double b, double c, boolean enable_debug){
         // calculations and data storage
 
         String[] temp = new String[4];      // temp storage
 
-        double root = (b * b) - (4 * a * c);
-        double pos_formula = - b + Math.sqrt(root) / (2 * a);     // positive formula
-        double neg_formula = - b - Math.sqrt(root) / (2 * a);     // negative formula
+        double root = b * b - 4 * a * c;                            // determinate
+        double pos_formula = (- b + Math.sqrt(root)) / (2 * a);     // positive formula (root 1)
+        double neg_formula = (- b - Math.sqrt(root)) / (2 * a);     // negative formula (root 2)
 
         // debug
         if (enable_debug) {
@@ -64,8 +74,8 @@ public class project1 {
     static void q_display(ArrayList<String[]> arrayList){
         // display Arraylist
         System.out.println("Key = [Formula(+), Formula(-), Root, Real Root Type]");
-        for (int i = 0; i < arrayList.size(); i++) {
-            System.out.println(Arrays.toString(arrayList.get(i)));
+        for (String[] values : arrayList) {
+            System.out.println(Arrays.toString(values));
         }
     }
 }
